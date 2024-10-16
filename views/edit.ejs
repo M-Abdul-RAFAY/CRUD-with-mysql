@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit</title>
+  </head>
+  <body style="text-align: center">
+    <h1>You can only Edit your name !</h1>
+    <h2><%=message%></h2>
+    <form method="post" action="/edit-info/<%= id %>?_method=PATCH">
+      <label for="Username">Username:</label>
+      <input id="Username" type="text" name="username" type="text" />
+      <h5>Enter you old password</h5>
+      <label for="password"
+        >Password: <input id="password" name="password" type="text"
+      /></label>
+      <br />
+      <br />
+      <button type="submit">submit</button>
+    </form>
+  </body>
+</html>

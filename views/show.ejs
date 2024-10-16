@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Current Users List</title>
+    <style>
+      body {
+        text-align: center;
+        margin: 0px;
+        padding: 0px;
+      }
+      table {
+        margin-top: 1rem;
+        display: inline-block;
+        border: solid 1px black;
+        border-spacing: 0px;
+        text-align: center;
+      }
+      td {
+        padding: 2rem;
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <nav>
+    <h1
+      style="
+        display: inline-block;
+        text-align: center;
+        margin-left: 33%;
+        margin-right: 25%;
+      "
+    >
+      Welcome to the database application
+    </h1>
+    <form style="display: inline-block" method="get" action="/new-account">
+      <button
+        type="submit"
+        style="background-color: green; color: white; padding: 0.5rem"
+      >
+        Create New Account
+      </button>
+    </form>
+  </nav>
+  <body>
+    <h1>The Total Number of User on our platform is <%= count %></h1>
+    <table>
+      <thead>
+        <tr>
+          <td><strong>No.</strong></td>
+          <td><strong>ID</strong></td>
+          <td><strong>Username</strong></td>
+          <td><strong>Email</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(user in result){%>
+        <tr>
+          <td><%= user%></td>
+          <td><%= result[user].id %></td>
+          <td><%= result[user].name %></td>
+          <td><%= result[user].email %></td>
+        </tr>
+        <tr>
+          <td colspan="4" , style="padding: 0px; border: solid 1px white">
+            <form method="get" action="/edit-page/<%= result[user].id%>">
+              <button
+                style="
+                  background-color: black;
+                  color: white;
+                  padding: 0.5rem;
+                  width: 100%;
+                "
+              >
+                Edit
+              </button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" , style="padding: 0px; border: solid 1px white">
+            <form
+              method="post"
+              action="/delete-user/<%= result[user].id%>?_method=DELETE"
+            >
+              <button
+                style="
+                  background-color: red;
+                  color: white;
+                  padding: 0.5rem;
+                  width: 100%;
+                "
+              >
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </body>
+</html>
